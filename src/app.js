@@ -7,27 +7,28 @@ const app = express();
 app.use(
   cors({
     origin: process.env.CORS_ORIGIN,
-    credentials: true,
   })
 );
 
 //configurations
 app.use(
   express.json({
-    limit: "16 kb",
+    limit: "16kb",
   })
 );
 
 app.use(
   express.urlencoded({
     extended: true,
+    // allows complex objects and arrays to be encoded into the URL-encoded format.
+
     limit: "16kb",
   })
 );
 
-app.use(express.static("public"));
+app.use(express.static("public")); //serves static files from the public directory
 
-app.use(cookieParser());
+app.use(cookieParser()); //parse cookies from incoming requests
 
 //import routes
 import userRouter from "./routes/user.routes.js";
@@ -35,7 +36,7 @@ import userRouter from "./routes/user.routes.js";
 //routes declaration
 //why app.use -> as router is in diff dir that we will need router for using it
 
-app.use("/api/v1/users", userRouter);
+app.use("api/v1/users", userRouter);
 
-//https://localhost:8000/api/v1/users/register
+//https://api/v1/users/register
 export { app };
