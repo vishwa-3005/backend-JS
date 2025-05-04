@@ -36,7 +36,7 @@ import userRouter from "./routes/user.routes.js";
 //routes declaration
 //why app.use -> as router is in diff dir that we will need router for using it
 
-app.use("api/v1/users", userRouter);
+app.use("/api/v1/users", userRouter);
 
 //https://api/v1/users/register
 export { app };
